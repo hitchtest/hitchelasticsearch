@@ -1,7 +1,7 @@
 HitchElasticSearch
 ==================
 
-HitchPostgres is a plugin for the Hitch test framework that lets you run and
+HitchElasticSearch is a plugin for the Hitch test framework that lets you run and
 interact with Elastic Search in an isolated way as part of a test.
 
 Use
