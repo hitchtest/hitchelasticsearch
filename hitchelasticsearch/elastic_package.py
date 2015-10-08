@@ -3,6 +3,7 @@ from subprocess import check_output, call
 from hitchtest.environment import checks
 from os.path import join, exists
 from os import makedirs, chdir
+import hitchelasticsearch
 
 
 ISSUES_URL = "http://github.com/hitchtest/hitchelasticsearch/issues"
@@ -23,7 +24,7 @@ class ElasticPackage(HitchPackage):
         super(ElasticPackage, self).__init__()
         self.version = self.check_version(version, self.VERSIONS, ISSUES_URL)
 
-        checks.packages(["openjdk-7-jre", ])
+        checks.packages(hitchelasticsearch.UNIXPACKAGES)
 
         if directory is None:
             self.directory = join(self.get_build_directory(), "elasticsearch-{}".format(self.version))
