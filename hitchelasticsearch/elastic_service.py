@@ -19,10 +19,13 @@ class ElasticService(Service):
             return [
                       self.elastic_package.elasticsearch,
                       "--path.data={}".format(join(
-                        self.service_group.hitch_dir.hitch_dir, 'elasticdata')
+                        self.service_group.hitch_dir.hitch_dir, 'elasticdata'
                       )),
                       "--path.tmp={}".format(join(
                         self.service_group.hitch_dir.hitch_dir, 'elastictmp'
+                      )),
+                      "--path.conf={}".format(join(
+                        self.service_group.hitch_dir.hitch_dir, 'elasticconf'
                       )),
                    ]
         else:
