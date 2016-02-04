@@ -1,6 +1,6 @@
 from hitchtest.environment import checks
 from hitchserve import Service
-from os.path import join
+from os.path import exists, join
 import signal
 import shutil
 import sys
@@ -13,9 +13,19 @@ class ElasticService(Service):
         kwargs['no_libfaketime'] = True
         super(ElasticService, self).__init__(**kwargs)
 
+    def setup(self):
+        config_dir = join(
+            self.service_group.hitch_dir.hitch_dir, 'elasticconf'
+        )
+        if not exists(config_dir):
+            shutil.copytree(join(
+                self.elastic_package.directory, 'config'
+            ), config_dir)
+
     @Service.command.getter
     def command(self):
         if self._command is None:
+
             return [
                       self.elastic_package.elasticsearch,
                       "--path.data={}".format(join(
